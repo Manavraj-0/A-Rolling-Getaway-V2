@@ -10,5 +10,5 @@ func show_victory():
 func _on_exit_button_pressed():
 	emit_signal("exit_pressed")
 
-func _on_next_level_button_pressed():
+func _on_next_level_pressed():
 	emit_signal("next_level_pressed")

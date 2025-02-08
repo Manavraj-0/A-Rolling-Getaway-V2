@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://doh33w3dety6u"]
+[gd_scene load_steps=19 format=4 uid="uid://doh33w3dety6u"]
 
 [ext_resource type="Texture2D" uid="uid://d1sflfbi2hkyi" path="res://assets/images/Tiles.png" id="1_bpw1w"]
 [ext_resource type="Script" path="res://scenes/levels/lvl_1.gd" id="1_nmrvh"]
@@ -6,6 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://by2j3mxfm8ao7" path="res://assets/images/sheet.png" id="2_j8o60"]
 [ext_resource type="PackedScene" uid="uid://85jke3t2ltqx" path="res://scenes/player/PlayerBall.tscn" id="3_48ttd"]
 [ext_resource type="PackedScene" uid="uid://n5eeakso0ewv" path="res://scenes/levels/victory_screen.tscn" id="6_uvbnh"]
+[ext_resource type="PackedScene" uid="uid://bcdt67cul7iw" path="res://scenes/Enemies/enemy_a.tscn" id="7_uju83"]
+[ext_resource type="PackedScene" uid="uid://bw1surtfs5ftf" path="res://scenes/hud/hud.tscn" id="8_m0ov1"]
+[ext_resource type="PackedScene" uid="uid://1c2pd2f4qprr" path="res://scenes/menu/pause_menu.tscn" id="9_sog6b"]
+[ext_resource type="PackedScene" uid="uid://dc8hv3wslc0hk" path="res://scenes/coin/coin.tscn" id="10_jcx1p"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_c2oxx"]
 tile_data = PackedInt32Array(0, 655363, 0, 65536, 786435, 805306369, 131072, 655363, 1, 196608, 786435, 805306368, 1, 720899, 0, 65537, 720899, 1, 131073, 720899, 1, 196609, 720899, 805306368, 2, 720899, 0, 65538, 720899, 1, 131074, 720899, 1, 196610, 720899, 805306368, 3, 720899, 0, 65539, 720899, 1, 131075, 720899, 1, 196611, 720899, 805306368, 4, 720899, 0, 65540, 720899, 1, 131076, 720899, 1, 196612, 720899, 805306368, 5, 720899, 0, 65541, 720899, 1, 131077, 720899, 1, 196613, 720899, 805306368, 6, 720899, 0, 65542, 720899, 1, 131078, 720899, 1, 196614, 720899, 805306368, 7, 720899, 0, 65543, 720899, 1, 131079, 720899, 1, 196615, 720899, 805306368, 8, 720899, 0, 65544, 720899, 1, 131080, 720899, 1, 196616, 720899, 805306368, 9, 720899, 0, 65545, 720899, 1, 131081, 720899, 1, 196617, 720899, 805306368, 10, 720899, 0, 65546, 720899, 1, 131082, 720899, 1, 196618, 720899, 805306368, 11, 720899, 0, 65547, 720899, 1, 131083, 720899, 1, 196619, 720899, 805306368, 12, 720899, 0, 65548, 720899, 1, 131084, 720899, 1, 196620, 720899, 805306368, 13, 720899, 0, 65549, 720899, 1, 131085, 720899, 1, 196621, 720899, 805306368, 14, 720899, 0, 65550, 720899, 1, 131086, 720899, 1, 196622, 720899, 805306368, 15, 720899, 0, 65551, 720899, 1, 131087, 720899, 1, 196623, 720899, 805306368, 16, 720899, 0, 65552, 720899, 1, 131088, 720899, 1, 196624, 720899, 805306368, 17, 720899, 0, 65553, 720899, 1, 131089, 720899, 1, 196625, 720899, 805306368, 18, 720899, 0, 65554, 720899, 1, 131090, 720899, 1, 196626, 720899, 805306368, 19, 720899, 0, 65555, 720899, 1, 131091, 720899, 1, 196627, 720899, 805306368, 20, 720899, 0, 65556, 720899, 1, 131092, 720899, 1, 196628, 720899, 805306368, 21, 720899, 0, 65557, 720899, 1, 131093, 720899, 1, 196629, 720899, 805306368, 22, 720899, 0, 65558, 720899, 1, 131094, 720899, 1, 196630, 720899, 805306368, 23, 720899, 0, 65559, 720899, 1, 131095, 720899, 1, 196631, 720899, 805306368, 24, 720899, 0, 65560, 720899, 1, 131096, 720899, 1, 196632, 720899, 805306368, 25, 720899, 0, 65561, 720899, 1, 131097, 720899, 1, 196633, 720899, 805306368, 26, 720899, 0, 65562, 720899, 1, 131098, 720899, 1, 196634, 720899, 805306368, 27, 720899, 0, 65563, 720899, 1, 131099, 720899, 1, 196635, 720899, 805306368, 28, 720899, 0, 65564, 720899, 1, 131100, 720899, 1, 196636, 720899, 805306368, 29, 720899, 0, 65565, 720899, 1, 131101, 720899, 1, 196637, 720899, 805306368, 30, 720899, 0, 65566, 720899, 1, 131102, 720899, 1, 196638, 720899, 805306368, 31, 720899, 0, 65567, 720899, 1, 131103, 720899, 1, 196639, 720899, 805306368, 32, 720899, 0, 65568, 720899, 1, 131104, 720899, 1, 196640, 720899, 805306368, 33, 720899, 0, 65569, 720899, 1, 131105, 720899, 1, 196641, 720899, 805306368, 34, 720899, 0, 65570, 720899, 1, 131106, 720899, 1, 196642, 720899, 805306368, 35, 720899, 0, 65571, 720899, 1, 131107, 720899, 1, 196643, 720899, 805306368, 36, 720899, 0, 65572, 720899, 1, 131108, 720899, 1, 196644, 720899, 805306368, 37, 720899, 0, 65573, 720899, 1, 131109, 720899, 1, 196645, 720899, 805306368, 38, 720899, 0, 65574, 720899, 1, 131110, 720899, 1, 196646, 720899, 805306368, 39, 720899, 0, 65575, 720899, 1, 131111, 720899, 1, 196647, 720899, 805306368, 40, 720899, 0, 65576, 720899, 1, 131112, 720899, 1, 196648, 720899, 805306368, 41, 720899, 0, 65577, 720899, 1, 131113, 720899, 1, 196649, 720899, 805306368, 42, 720899, 0, 65578, 720899, 1, 131114, 720899, 1, 196650, 720899, 805306368, 43, 720899, 0, 65579, 720899, 1, 131115, 720899, 1, 196651, 720899, 805306368, 44, 720899, 0, 65580, 720899, 1, 131116, 720899, 1, 196652, 720899, 805306368, 45, 720899, 0, 65581, 720899, 1, 131117, 720899, 1, 196653, 720899, 805306368, 46, 720899, 0, 65582, 720899, 1, 131118, 720899, 1, 196654, 720899, 805306368, 47, 720899, 0, 65583, 720899, 1, 131119, 720899, 1, 196655, 720899, 805306368, 48, 720899, 0, 65584, 720899, 1, 131120, 720899, 1, 196656, 720899, 805306368, 49, 720899, 0, 65585, 720899, 1, 131121, 720899, 1, 196657, 720899, 805306368, 50, 720899, 0, 65586, 720899, 1, 131122, 720899, 1, 196658, 720899, 805306368, 51, 720899, 0, 65587, 720899, 1, 131123, 720899, 1, 196659, 720899, 805306368, 52, 720899, 0, 65588, 720899, 1, 131124, 720899, 1, 196660, 720899, 805306368, 53, 720899, 0, 65589, 720899, 1, 131125, 720899, 1, 196661, 720899, 805306368, 54, 720899, 0, 65590, 720899, 1, 131126, 720899, 1, 196662, 720899, 805306368, 55, 720899, 0, 65591, 720899, 1, 131127, 720899, 1, 196663, 720899, 805306368, 56, 720899, 0, 65592, 720899, 1, 131128, 720899, 1, 196664, 720899, 805306368, 57, 720899, 0, 65593, 720899, 1, 131129, 720899, 1, 196665, 720899, 805306368)
@@ -979,22 +983,74 @@ tile_set = SubResource("TileSet_kreoj")
 
 [node name="VictoryArea" type="Area2D" parent="Tilemaps/Ground"]
 position = Vector2(520, 2231)
-collision_layer = 2
-collision_mask = 2
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tilemaps/Ground/VictoryArea"]
 position = Vector2(56, -8)
 shape = SubResource("RectangleShape2D_j0hhp")
 
+[node name="Coin" parent="Tilemaps/Ground" instance=ExtResource("10_jcx1p")]
+position = Vector2(392, 399)
+
+[node name="Coin2" parent="Tilemaps/Ground" instance=ExtResource("10_jcx1p")]
+position = Vector2(368, 623)
+
+[node name="Coin3" parent="Tilemaps/Ground" instance=ExtResource("10_jcx1p")]
+position = Vector2(976, 623)
+
+[node name="Coin4" parent="Tilemaps/Ground" instance=ExtResource("10_jcx1p")]
+position = Vector2(568, 847)
+
+[node name="Coin5" parent="Tilemaps/Ground" instance=ExtResource("10_jcx1p")]
+position = Vector2(288, 1071)
+
+[node name="Coin6" parent="Tilemaps/Ground" instance=ExtResource("10_jcx1p")]
+position = Vector2(1024, 1295)
+
+[node name="Coin7" parent="Tilemaps/Ground" instance=ExtResource("10_jcx1p")]
+position = Vector2(568, 1519)
+
+[node name="Coin8" parent="Tilemaps/Ground" instance=ExtResource("10_jcx1p")]
+position = Vector2(488, 1743)
+
+[node name="Coin9" parent="Tilemaps/Ground" instance=ExtResource("10_jcx1p")]
+position = Vector2(224, 1967)
+
+[node name="Coin10" parent="Tilemaps/Ground" instance=ExtResource("10_jcx1p")]
+position = Vector2(384, 175)
+
 [node name="Player" parent="." instance=ExtResource("3_48ttd")]
 position = Vector2(80, 80)
-collision_layer = 3
-collision_mask = 5
+
+[node name="Enemy_A" parent="." instance=ExtResource("7_uju83")]
+position = Vector2(256, 400)
+
+[node name="Enemy_A2" parent="." instance=ExtResource("7_uju83")]
+position = Vector2(608, 848)
+
+[node name="Enemy_A3" parent="." instance=ExtResource("7_uju83")]
+position = Vector2(376, 1520)
+
+[node name="Enemy_A4" parent="." instance=ExtResource("7_uju83")]
+position = Vector2(544, 1968)
 
 [node name="VictoryScreen" parent="." instance=ExtResource("6_uvbnh")]
+visibility_layer = 16
 offset_left = 576.0
 offset_top = 324.0
 offset_right = 576.0
 offset_bottom = 324.0
+
+[node name="HUD" parent="." instance=ExtResource("8_m0ov1")]
+
+[node name="PauseMenu" parent="." instance=ExtResource("9_sog6b")]
+anchors_preset = -1
+offset_left = 568.0
+offset_top = 328.0
+offset_right = 568.0
+offset_bottom = 328.0
+grow_horizontal = 0
+grow_vertical = 1
+size_flags_horizontal = 4
 
 [connection signal="body_entered" from="Tilemaps/Ground/VictoryArea" to="." method="_on_victory_area_body_entered"]

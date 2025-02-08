@@ -1,19 +1,36 @@
-# Level1.gd
+# Lvl_1.gd
 extends Node2D
 
 @onready var ground = $Tilemaps/Ground  # Your TileMap
 @onready var victory_area = $Tilemaps/Ground/VictoryArea  # Area2D for detection
 @onready var victory_screen = $VictoryScreen
+@onready var hud: CanvasLayer = $HUD
+@onready var pause_menu: Control = $PauseMenu
+
+#var floor_position = 1  # Track vertical position
+#var floor_count = 1
+#const FLOOR_HEIGHT = 500  # Adjust based on your level design
+
 var ground_speed = 10  # Your current vertical speed
 var game_won = false
 var movement_started = false
-var start_timer = 0.5
+var start_timer = 0.1
 var can_move = false
 var current_level = 1  # Current level number
 
 func _ready():
 	# Debug print to confirm signals are connected
 	print("Connecting signals...")
+	
+	hud.add_to_group("hud")
+	
+	hud.update_health(3)
+	hud.update_coins(0)
+	#hud.update_floor(floor_count)
+	
+	var player = get_tree().get_first_node_in_group("player")
+	if player:
+		player.health_changed.connect(_on_player_health_changed)
 	
 	# Connect victory area signal
 	if victory_area:
@@ -27,7 +44,33 @@ func _ready():
 	# Ensure victory screen is hidden at start
 	victory_screen.hide()
 
+func _on_coin_collected():
+	hud.update_coins(hud.coins + 1)
+	
+func _on_player_health_changed(new_health):
+	hud.update_health(new_health)
+
+func _unhandled_input(event):
+	if event.is_action_pressed("pause"):
+		toggle_pause()
+
+func toggle_pause():
+	if get_tree().paused:
+		hud.show()
+	else:
+		hud.hide()
+
+	get_tree().paused = !get_tree().paused
+	pause_menu.visible = get_tree().paused
+
 func _process(delta):
+	#var tilemaps = $Tilemaps/Ground
+	#if tilemaps:
+		#var new_floor_pos = floor(abs(tilemaps.position.y) / FLOOR_HEIGHT)
+		#if new_floor_pos > floor_count:
+			#floor_count = new_floor_pos
+			#hud.update_floor(floor_count)
+	
 	if game_won:
 		return  # Stop all movement if game is won
 		
@@ -40,6 +83,7 @@ func _process(delta):
 	# Move ground only if timer has finished and game isn't won
 	if can_move and !game_won:
 		ground.position.y -= ground_speed * delta
+
 
 func _on_start_timer_timeout():
 	can_move = true
@@ -64,6 +108,7 @@ func win_game():
 		print("Failed to save level progress")
 	
 	victory_screen.show_victory()
+	hud.hide()
 
 func _on_exit():
 	get_tree().change_scene_to_file("res://scenes/menu/levels.tscn")

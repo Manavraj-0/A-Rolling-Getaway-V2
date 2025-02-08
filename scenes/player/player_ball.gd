@@ -1,11 +1,15 @@
 extends RigidBody2D
 
+signal health_changed(new_health)
+
 # Movement variables
 var move_speed = 300
 var jump_force = -250
 var is_grounded = false
 var has_moved = false
 var is_dying = false
+var max_health = 3
+var current_health = max_health
 
 @onready var tilemap = get_node("/root/Lvl1/Tilemaps")  # Adjust path if needed
 @onready var death_timer = Timer.new()
@@ -53,7 +57,7 @@ func _physics_process(_delta):
 			apply_central_impulse(Vector2(0, jump_force))
 			is_grounded = false  # Set to false immediately after jumping
 
-func _process(delta):
+func _process(_delta):
 	var viewport_rect = get_viewport_rect()
 	var margin = 50
 	var alivescreen = viewport_rect.grow(margin)
@@ -67,8 +71,17 @@ func start_death_sequence():
 	is_dying = true
 	death_timer.start()
 	# Optional: Add death effects here
-	# set_physics_process(false)  # Optionally freeze player movement immediately
+	set_physics_process(false)  # Optionally freeze player movement immediately
 
+func take_damage(amount: int):
+	current_health -= amount
+	health_changed.emit(current_health)
+	if current_health <= 0:
+		die()
+
+func die():
+	get_tree().reload_current_scene()
+	
 func player_death():
 	print("Player died!")
 	is_dying = false
@@ -76,6 +89,6 @@ func player_death():
 
 func restart_level():
 	# Get the current scene path
-	var current_scene = get_tree().current_scene.scene_file_path
+	#var current_scene = get_tree().current_scene.scene_file_path
 	# Reload the current scene
 	get_tree().reload_current_scene()
