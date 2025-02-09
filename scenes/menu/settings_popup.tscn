@@ -1,0 +1,68 @@
+[gd_scene load_steps=2 format=3 uid="uid://csn22n5e21lg7"]
+
+[ext_resource type="Script" path="res://scenes/menu/settings_popup.gd" id="1_xc3i5"]
+
+[node name="SettingsPopup" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 536.0
+offset_top = 320.0
+offset_right = 576.0
+offset_bottom = 360.0
+script = ExtResource("1_xc3i5")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = -112.0
+offset_top = -152.0
+offset_right = 80.0
+offset_bottom = 32.0
+scale = Vector2(1.5, 1.5)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -61.5
+offset_top = -46.5
+offset_right = 61.5
+offset_bottom = 46.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 35
+text = "Settings"
+
+[node name="ResetProgressButton" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Reset Progress"
+
+[node name="CloseButton" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Close"
+
+[node name="ResetConfirmDialog" type="AcceptDialog" parent="Panel"]
+initial_position = 2
+size = Vector2i(425, 236)
+dialog_text = "Are you sure you want to reset all progress? This will:
+
+- Reset all level completions
+- Reset all collected coins
+- Reset to level 1
+
+This cannot be undone!"
+
+[connection signal="pressed" from="Panel/VBoxContainer/ResetProgressButton" to="." method="_on_reset_progress_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="canceled" from="Panel/ResetConfirmDialog" to="." method="_on_reset_canceled"]
+[connection signal="confirmed" from="Panel/ResetConfirmDialog" to="." method="_on_reset_confirmed"]

@@ -1044,13 +1044,14 @@ offset_bottom = 324.0
 [node name="HUD" parent="." instance=ExtResource("8_m0ov1")]
 
 [node name="PauseMenu" parent="." instance=ExtResource("9_sog6b")]
+process_mode = 2
+visible = false
+visibility_layer = 16
 anchors_preset = -1
 offset_left = 568.0
 offset_top = 328.0
 offset_right = 568.0
 offset_bottom = 328.0
-grow_horizontal = 0
-grow_vertical = 1
 size_flags_horizontal = 4
 
 [connection signal="body_entered" from="Tilemaps/Ground/VictoryArea" to="." method="_on_victory_area_body_entered"]

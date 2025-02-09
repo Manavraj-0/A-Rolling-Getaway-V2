@@ -81,7 +81,7 @@ script = ExtResource("1_2lphq")
 sprite_frames = SubResource("SpriteFrames_x0u7d")
 animation = &"spin"
 autoplay = "spin"
-frame_progress = 0.578001
+frame_progress = 0.0469023
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

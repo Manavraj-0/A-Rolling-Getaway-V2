@@ -15,11 +15,18 @@ grow_vertical = 2
 script = ExtResource("1_oy1af")
 
 [node name="Panel" type="Panel" parent="."]
+process_mode = 2
 self_modulate = Color(0, 0, 0, 0.705882)
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = -1
+anchor_left = 0.222
+anchor_top = 0.296
+anchor_right = 0.778
+anchor_bottom = 0.704
+offset_left = 320.256
+offset_top = 132.192
+offset_right = -320.256
+offset_bottom = -132.192
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -81,3 +88,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 30
 text = "Menu"
+
+[connection signal="pressed" from="HBoxContainer/Resume/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/Restart/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/Menu/MenuButton" to="." method="_on_menu_button_pressed"]

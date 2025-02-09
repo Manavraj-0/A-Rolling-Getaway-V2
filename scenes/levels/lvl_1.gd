@@ -17,13 +17,15 @@ var movement_started = false
 var start_timer = 0.1
 var can_move = false
 var current_level = 1  # Current level number
+var coins_collected_this_level = 0
 
 func _ready():
 	# Debug print to confirm signals are connected
 	print("Connecting signals...")
 	
-	hud.add_to_group("hud")
+	hud.pause_requested.connect(toggle_pause)
 	
+	hud.add_to_group("hud")
 	hud.update_health(3)
 	hud.update_coins(0)
 	#hud.update_floor(floor_count)
@@ -45,7 +47,8 @@ func _ready():
 	victory_screen.hide()
 
 func _on_coin_collected():
-	hud.update_coins(hud.coins + 1)
+	coins_collected_this_level += 1
+	hud.update_coins(coins_collected_this_level)
 	
 func _on_player_health_changed(new_health):
 	hud.update_health(new_health)
@@ -55,13 +58,9 @@ func _unhandled_input(event):
 		toggle_pause()
 
 func toggle_pause():
-	if get_tree().paused:
-		hud.show()
-	else:
-		hud.hide()
-
 	get_tree().paused = !get_tree().paused
 	pause_menu.visible = get_tree().paused
+	hud.visible = !get_tree().paused
 
 func _process(delta):
 	#var tilemaps = $Tilemaps/Ground
@@ -100,6 +99,9 @@ func win_game():
 	print("Game won!")
 	game_won = true
 	can_move = false
+	
+	# Save coins only when level is completed
+	GameProgress.add_coins(coins_collected_this_level)
 	
 	# Mark level as completed and unlock next level
 	if GameProgress.complete_level(current_level):

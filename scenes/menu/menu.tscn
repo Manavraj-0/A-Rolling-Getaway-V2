@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bfrxj7g8eeova"]
+[gd_scene load_steps=21 format=3 uid="uid://bfrxj7g8eeova"]
 
 [ext_resource type="Script" path="res://scripts/menu.gd" id="1_210n1"]
 [ext_resource type="Script" path="res://scenes/menu/level_mode_btn.gd" id="2_3wv78"]
@@ -12,6 +12,8 @@
 [ext_resource type="Script" path="res://scenes/menu/high_score_btn.gd" id="5_pc8k4"]
 [ext_resource type="Script" path="res://scenes/menu/sound_button.gd" id="7_igc8i"]
 [ext_resource type="Texture2D" uid="uid://3r8ufg2en8u0" path="res://assets/gui_pack_White/white_musicOff.png" id="11_p0m3f"]
+[ext_resource type="Texture2D" uid="uid://di64pp82pt033" path="res://assets/gui_pack_White/white_config.png" id="13_srg36"]
+[ext_resource type="PackedScene" uid="uid://csn22n5e21lg7" path="res://scenes/menu/settings_popup.tscn" id="14_g3aow"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_f87sn"]
 shader = ExtResource("2_54wpg")
@@ -154,6 +156,18 @@ toggle_mode = true
 texture_normal = ExtResource("2_pgwva")
 texture_pressed = ExtResource("11_p0m3f")
 script = ExtResource("7_igc8i")
+
+[node name="SettingsButton" type="TextureButton" parent="MainContainer"]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 561.0
+offset_right = 85.0
+offset_bottom = 629.0
+texture_normal = ExtResource("13_srg36")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="SettingsPopup" parent="." instance=ExtResource("14_g3aow")]
 
 [connection signal="pressed" from="MainContainer/ButtonGrid/LevelModeBtn" to="." method="_on_level_mode_btn_pressed"]
 [connection signal="pressed" from="MainContainer/ButtonGrid/EndlessBtn" to="." method="_on_endless_btn_pressed"]

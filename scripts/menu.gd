@@ -5,8 +5,14 @@ extends Node2D
 @onready var MUSIC_OFF = preload("res://assets/gui_pack_White/white_musicOff.png")
 @onready var MUSIC_ON = preload("res://assets/gui_pack_White/white_musicOn.png")
 
+@onready var settings_button: TextureButton = $MainContainer/SettingsButton
+@onready var settings_popup: Control = $SettingsPopup
 
 func _ready():
+	settings_button.pressed.connect(_on_settings_button_pressed)
+	
+	settings_popup.settings_closed.connect(_on_settings_closed)
+	settings_popup.reset_confirmed.connect(_on_reset_confirmed)
 	
 	toggle_sound.modulate.a = 1.0
 	
@@ -14,7 +20,17 @@ func _ready():
 		toggle_sound.texture_normal = MUSIC_ON
 	else:
 		toggle_sound.texture_normal = MUSIC_OFF
-	
+
+func _on_settings_button_pressed():
+	settings_popup.show_settings()
+	get_tree().paused = true
+
+func _on_settings_closed():
+	get_tree().paused = false
+
+func _on_reset_confirmed():
+	pass
+
 func _on_toggle_sound_pressed():
 
 	var tween = create_tween()

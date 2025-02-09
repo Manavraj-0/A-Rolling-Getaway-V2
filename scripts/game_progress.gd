@@ -6,6 +6,14 @@ var level_status = {
 	3: {"unlocked": false, "completed": false},
 }
 
+var player_data = {
+	"total_coins": 0,
+	"current_skin": "default",
+	"skins": {
+		"default": true  # Default skin always unlocked
+	}
+}
+
 # Called when the node enters the scene tree
 func _ready():
 	load_progress()  # Load saved progress when game starts
@@ -43,6 +51,16 @@ func get_highest_unlocked_level() -> int:
 			highest = max(highest, level)
 	return highest
 
+# COIN PART
+
+func add_coins(amount: int):
+	player_data["total_coins"] += amount
+	save_progress()
+	return player_data["total_coins"]
+
+func get_total_coins() -> int:
+	return player_data["total_coins"]
+
 func reset_progress():
 	# Reset all levels except first one
 	for level in level_status.keys():
@@ -53,7 +71,11 @@ func reset_progress():
 func save_progress():
 	var save_file = FileAccess.open("user://game_progress.save", FileAccess.WRITE)
 	if save_file:
-		save_file.store_var(level_status)
+		var save_data = {
+			"level_status": level_status,
+			"player_data": player_data
+		}
+		save_file.store_var(save_data)
 		return true
 	return false
 
@@ -64,6 +86,9 @@ func load_progress():
 			var loaded_data = save_file.get_var()
 			# Validate loaded data
 			if typeof(loaded_data) == TYPE_DICTIONARY:
-				level_status = loaded_data
+				if "level_status" in loaded_data:
+					level_status = loaded_data["level_status"]
+				if "player_data" in loaded_data:
+					player_data = loaded_data["player_data"]
 				return true
 	return false

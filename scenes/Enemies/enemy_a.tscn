@@ -42,7 +42,6 @@ script = ExtResource("1_rvd57")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-scale = Vector2(1, 1)
 sprite_frames = SubResource("SpriteFrames_m1ejv")
 animation = &"right"
 frame_progress = 0.583779
@@ -50,19 +49,16 @@ frame_progress = 0.583779
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2(0, 49.2609)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_r7gt7")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2(-1.63514e-05, -12.4696)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_k7bv6")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2(-5.94596e-06, -54.8783)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_coaoc")
 
 [node name="EdgeCheck" type="RayCast2D" parent="."]
