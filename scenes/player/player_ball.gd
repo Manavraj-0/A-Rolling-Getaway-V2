@@ -24,6 +24,11 @@ func _ready():
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
 	
+	# Apply current skin texture
+	var current_skin = GameProgress.get_current_skin()
+	var texture_path = GameProgress.get_skin_texture_path(current_skin)
+	$Sprite2D.texture = load(texture_path)  # Adjust node path as needed
+	
 	# Setup death timer
 	add_child(death_timer)
 	death_timer.wait_time = 1.0

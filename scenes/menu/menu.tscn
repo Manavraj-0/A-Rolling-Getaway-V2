@@ -168,6 +168,7 @@ ignore_texture_size = true
 stretch_mode = 0
 
 [node name="SettingsPopup" parent="." instance=ExtResource("14_g3aow")]
+visible = false
 
 [connection signal="pressed" from="MainContainer/ButtonGrid/LevelModeBtn" to="." method="_on_level_mode_btn_pressed"]
 [connection signal="pressed" from="MainContainer/ButtonGrid/EndlessBtn" to="." method="_on_endless_btn_pressed"]

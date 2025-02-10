@@ -1,0 +1,51 @@
+[gd_scene load_steps=2 format=3 uid="uid://du0hhw2bilug3"]
+
+[ext_resource type="Script" path="res://skin_button.gd" id="1_7xbts"]
+
+[node name="SkinButton" type="Button"]
+custom_minimum_size = Vector2(80, 30)
+offset_right = 80.0
+offset_bottom = 30.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 40
+script = ExtResource("1_7xbts")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Labels" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="PriceLabel" type="Label" parent="VBoxContainer/Labels"]
+custom_minimum_size = Vector2(100, 20)
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_font_sizes/font_size = 30
+text = "
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StatusLabel" type="Label" parent="VBoxContainer/Labels"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_font_sizes/font_size = 30
+
+[node name="Icon" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="SkinIcon" type="TextureRect" parent="VBoxContainer/Icon"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+size_flags_horizontal = 3
+expand_mode = 1
+stretch_mode = 5

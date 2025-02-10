@@ -101,6 +101,7 @@ func win_game():
 	can_move = false
 	
 	# Save coins only when level is completed
+	print("Coins collected: ", coins_collected_this_level)
 	GameProgress.add_coins(coins_collected_this_level)
 	
 	# Mark level as completed and unlock next level

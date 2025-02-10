@@ -1,3 +1,95 @@
-[gd_scene format=3 uid="uid://prh2g264q1v0"]
+[gd_scene load_steps=3 format=3 uid="uid://prh2g264q1v0"]
 
-[node name="ball_skin" type="Node2D"]
+[ext_resource type="Script" path="res://scenes/menu/ball_skin.gd" id="1_5xosq"]
+[ext_resource type="Texture2D" uid="uid://2y5jhe1pqa71" path="res://assets/player/sphere1.png" id="2_dbq5u"]
+
+[node name="CustomizationMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+script = ExtResource("1_5xosq")
+
+[node name="BackgroundTexture" type="TextureRect" parent="."]
+layout_mode = 2
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 1136.0
+offset_bottom = 632.0
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="LeftPanel" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="BackButton" type="Button" parent="MarginContainer/HBoxContainer/LeftPanel"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 30
+text = "Close"
+
+[node name="PreviewCard" type="PanelContainer" parent="MarginContainer/HBoxContainer/LeftPanel"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/LeftPanel/PreviewCard"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/HBoxContainer/LeftPanel/PreviewCard/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 30
+text = "Preview"
+
+[node name="PreviewBall" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftPanel/PreviewCard/VBoxContainer"]
+visibility_layer = 2
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("2_dbq5u")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CoinsLabel" type="Label" parent="MarginContainer/HBoxContainer/LeftPanel/PreviewCard/VBoxContainer"]
+visibility_layer = 2
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 30
+text = "Coins: 0"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="RightPanel" type="ScrollContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="SkinGrid" type="GridContainer" parent="MarginContainer/HBoxContainer/RightPanel"]
+custom_minimum_size = Vector2(200, 300)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 3

@@ -30,8 +30,9 @@ func _on_reset_progress_pressed():
 
 func _on_reset_confirmed():
 	GameProgress.reset_progress()
-	hide()
-	main_menu_ui.show()
+	#hide()
+	#main_menu_ui.show()
+	get_tree().paused = false
 	get_tree().change_scene_to_file("res://scenes/menu/menu.tscn")
 
 func _on_reset_canceled():

@@ -10,13 +10,100 @@ var player_data = {
 	"total_coins": 0,
 	"current_skin": "default",
 	"skins": {
-		"default": true  # Default skin always unlocked
+		"default": {
+			"owned": true,
+			"price": 0,
+			"texture_path": "res://assets/player/sphere1.png"
+		},
+		"earth": {
+			"owned": false,
+			"price": 15,
+			"texture_path": "res://assets/player/earth.png"
+		},
+		"venus": {
+			"owned": false,
+			"price": 15,
+			"texture_path": "res://assets/player/venus.png"
+		},
+		"sun": {
+			"owned": false,
+			"price": 15,
+			"texture_path": "res://assets/player/sun.png"
+		},
+		"saturn": {
+			"owned": false,
+			"price": 15,
+			"texture_path": "res://assets/player/saturn.png"
+		},
+		"neptune": {
+			"owned": false,
+			"price": 15,
+			"texture_path": "res://assets/player/neptune.png"
+		},
+		"mercury": {
+			"owned": false,
+			"price": 15,
+			"texture_path": "res://assets/player/mercury.png"
+		},
+		"mars": {
+			"owned": false,
+			"price": 15,
+			"texture_path": "res://assets/player/mars.png"
+		},
+		"jupiter": {
+			"owned": false,
+			"price": 15,
+			"texture_path": "res://assets/player/jupiter.png"
+		}
 	}
 }
 
 # Called when the node enters the scene tree
 func _ready():
 	load_progress()  # Load saved progress when game starts
+
+func get_current_skin() -> String:
+	return player_data["current_skin"]
+	
+func get_skin_data(skin_name: String) -> Dictionary:
+	#print("Fetching skin data for: ", skin_name)  # Debugging
+	if skin_name in player_data["skins"]:
+		#print("Skin data found: ", player_data["skins"][skin_name])  # Debugging
+		return player_data["skins"][skin_name]
+	#print("Skin not found, returning empty dictionary")  # Debugging
+	return {}
+	
+func is_skin_owned(skin_name: String) -> bool:
+	if skin_name in player_data["skins"]:
+		return player_data["skins"].get(skin_name, {}).get("owned", false)
+	return false
+
+func get_skin_price(skin_name: String) -> int:
+	if skin_name in player_data["skins"]:
+		return player_data["skins"][skin_name]["price"]
+	return 0
+	
+func get_skin_texture_path(skin_name: String) -> String:
+	if skin_name in player_data["skins"]:
+		return player_data["skins"][skin_name]["texture_path"]
+	return ""
+
+func buy_skin(skin_name: String) -> bool:
+	if skin_name in player_data["skins"] and not player_data["skins"][skin_name]["owned"]:
+		var price = player_data["skins"][skin_name]["price"]
+		if player_data["total_coins"] >= price:
+			player_data["total_coins"] -= price
+			player_data["skins"][skin_name]["owned"] = true
+			save_progress()
+			return true
+	return false
+
+func equip_skin(skin_name: String) -> bool:
+	if is_skin_owned(skin_name):
+		player_data["current_skin"] = skin_name
+		save_progress()
+		return true
+	return false
 
 func complete_level(level_number: int):
 	if level_number in level_status:
