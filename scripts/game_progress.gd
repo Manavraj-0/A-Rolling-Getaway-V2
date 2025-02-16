@@ -13,47 +13,47 @@ var player_data = {
 		"default": {
 			"owned": true,
 			"price": 0,
-			"texture_path": "res://assets/player/sphere1.png"
+			"texture_path": "res://assets/player/planet00.png"
 		},
 		"earth": {
 			"owned": false,
 			"price": 15,
-			"texture_path": "res://assets/player/earth.png"
+			"texture_path": "res://assets/player/planet08.png"
 		},
 		"venus": {
 			"owned": false,
 			"price": 15,
-			"texture_path": "res://assets/player/venus.png"
+			"texture_path": "res://assets/player/planet06.png"
 		},
 		"sun": {
 			"owned": false,
 			"price": 15,
-			"texture_path": "res://assets/player/sun.png"
+			"texture_path": "res://assets/player/planet02.png"
 		},
 		"saturn": {
 			"owned": false,
 			"price": 15,
-			"texture_path": "res://assets/player/saturn.png"
+			"texture_path": "res://assets/player/planet05.png"
 		},
 		"neptune": {
 			"owned": false,
 			"price": 15,
-			"texture_path": "res://assets/player/neptune.png"
+			"texture_path": "res://assets/player/planet07.png"
 		},
 		"mercury": {
 			"owned": false,
 			"price": 15,
-			"texture_path": "res://assets/player/mercury.png"
+			"texture_path": "res://assets/player/planet04.png"
 		},
 		"mars": {
 			"owned": false,
 			"price": 15,
-			"texture_path": "res://assets/player/mars.png"
+			"texture_path": "res://assets/player/planet01.png"
 		},
 		"jupiter": {
 			"owned": false,
 			"price": 15,
-			"texture_path": "res://assets/player/jupiter.png"
+			"texture_path": "res://assets/player/planet09.png"
 		}
 	}
 }
@@ -153,6 +153,15 @@ func reset_progress():
 	for level in level_status.keys():
 		level_status[level]["completed"] = false
 		level_status[level]["unlocked"] = (level == 1)
+	
+	#coins 
+	player_data["total_coins"] = 0
+	
+	#skins
+	for skin in player_data["skins"].keys():
+		player_data["skins"][skin]["owned"] = (skin == "default")
+	player_data["current_skin"] = "default"
+	
 	save_progress()
 
 func save_progress():

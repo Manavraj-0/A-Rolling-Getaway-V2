@@ -16,8 +16,14 @@ func _ready():
 
 func setup_layout():
 	# Use 3 columns unless running on Android (in which case use 2)
+	skin_container.custom_minimum_size = Vector2(0, 400)  # Adjust based on your needs
+	skin_container.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	skin_container.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	skin_container.columns = 3 if DisplayServer.get_name() != "android" else 2
-
+	
+	skin_container.add_theme_constant_override("h_separation", 10)
+	skin_container.add_theme_constant_override("v_separation", 10)
+	
 	# Create a new style for the preview panel.
 	var style = StyleBoxFlat.new()
 	style.bg_color = Color(0.12, 0.13, 0.2, 0.3)

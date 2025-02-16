@@ -28,6 +28,7 @@ window/stretch/mode="viewport"
 
 ground=""
 player="for lvl completion"
+coins=""
 
 [gui]
 

@@ -28,6 +28,9 @@ func _ready():
 	hud.add_to_group("hud")
 	hud.update_health(3)
 	hud.update_coins(0)
+	
+	for coin in get_tree().get_nodes_in_group("coins"):
+		coin.collected.connect(_on_coin_collected)
 	#hud.update_floor(floor_count)
 	
 	var player = get_tree().get_first_node_in_group("player")

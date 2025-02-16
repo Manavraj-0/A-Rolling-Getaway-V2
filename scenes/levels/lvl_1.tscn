@@ -1035,6 +1035,7 @@ position = Vector2(376, 1520)
 position = Vector2(544, 1968)
 
 [node name="VictoryScreen" parent="." instance=ExtResource("6_uvbnh")]
+visible = false
 visibility_layer = 16
 offset_left = 576.0
 offset_top = 324.0
