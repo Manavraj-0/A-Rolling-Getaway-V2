@@ -87,43 +87,22 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("5_w1vms")
 
-[node name="LeftButton" type="TextureButton" parent="MobileControls"]
-layout_mode = 1
-anchors_preset = -1
-anchor_bottom = 1.0
-offset_top = 520.0
-offset_right = 108.0
-offset_bottom = -4.0
+[node name="LeftButton" type="TouchScreenButton" parent="MobileControls"]
+position = Vector2(25, 490)
+scale = Vector2(1.5, 1.5)
 texture_normal = ExtResource("5_vc8no")
-stretch_mode = 0
+texture_pressed = ExtResource("5_vc8no")
 
-[node name="RightButton" type="TextureButton" parent="MobileControls"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.15
-anchor_right = 0.15
-anchor_bottom = 1.0
-offset_left = -18.8
-offset_top = 520.0
-offset_right = 90.2
-offset_bottom = -4.0
+[node name="RightButton" type="TouchScreenButton" parent="MobileControls"]
+position = Vector2(200, 490)
+scale = Vector2(1.5, 1.5)
 texture_normal = ExtResource("6_d5pi8")
-stretch_mode = 0
+texture_pressed = ExtResource("6_d5pi8")
 
-[node name="JumpButton" type="TextureButton" parent="MobileControls"]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -116.0
-offset_top = 520.0
-offset_right = -4.0
-offset_bottom = -4.0
-grow_horizontal = 0
-grow_vertical = 0
+[node name="JumpButton" type="TouchScreenButton" parent="MobileControls"]
+position = Vector2(947, 490)
+scale = Vector2(1.5, 1.5)
 texture_normal = ExtResource("8_qupnj")
-stretch_mode = 0
+texture_pressed = ExtResource("8_qupnj")
 
 [connection signal="pressed" from="TopBar/PauseButton" to="." method="_on_pause_button_pressed"]

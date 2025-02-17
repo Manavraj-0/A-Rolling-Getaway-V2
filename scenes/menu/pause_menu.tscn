@@ -16,17 +16,17 @@ script = ExtResource("1_oy1af")
 
 [node name="Panel" type="Panel" parent="."]
 process_mode = 2
-self_modulate = Color(0, 0, 0, 0.705882)
+self_modulate = Color(0.0862745, 0.0862745, 0.0862745, 0.627451)
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.222
-anchor_top = 0.296
-anchor_right = 0.778
-anchor_bottom = 0.704
-offset_left = 320.256
-offset_top = 132.192
-offset_right = -320.256
-offset_bottom = -132.192
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.0
+offset_top = -324.0
+offset_right = 576.0
+offset_bottom = 324.0
 grow_horizontal = 2
 grow_vertical = 2
 

@@ -13,7 +13,7 @@ func _ready():
 	# Make sure popup can process while game is paused
 	process_mode = Node.PROCESS_MODE_WHEN_PAUSED
 	
-	reset_confirm_dialog.dialog_text = "Are you sure you want to Reset?\nThis will:\n- Reset all levels\n- Reset coins\n- Reset to level 1\n\nThis cannot be undone!\n"
+	reset_confirm_dialog.dialog_text = "Are you sure you want to Reset?\nThis will:\n\n- Reset all Skins Unlocked\n- Reset coins\n- Reset to level 1\n\nThis cannot be undone!\n"
 	reset_confirm_dialog.ok_button_text = "Reset"
 
 func show_settings():

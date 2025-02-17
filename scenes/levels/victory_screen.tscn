@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/levels/victory_screen.gd" id="1_ask43"]
 [ext_resource type="Texture2D" uid="uid://b42rfcsi1vijl" path="res://assets/on_screen_ui/Sprites/shaded-dark/shadedDark35.png" id="2_kbwpq"]
-[ext_resource type="Texture2D" uid="uid://chp46v7cwqwbd" path="res://assets/on_screen_ui/Sprites/shaded-dark/shadedDark45.png" id="3_o8j8u"]
+[ext_resource type="Texture2D" uid="uid://gkyiqb5tar0u" path="res://assets/on_screen_ui/Sprites/shaded-dark/shadedDark21.png" id="3_p8egt"]
 
 [node name="VictoryScreen" type="Control"]
 layout_mode = 3
@@ -13,20 +13,31 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ask43")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Panel" type="Panel" parent="."]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.0
+offset_top = -324.0
+offset_right = 576.0
+offset_bottom = 324.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.698039)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.037
+anchor_right = 0.5
+anchor_bottom = 0.975
+offset_left = -139.0
+offset_top = 0.0240002
+offset_right = 139.0
+offset_bottom = -7.79999
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -40,17 +51,39 @@ vertical_alignment = 1
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
+size_flags_vertical = 6
 theme_override_constants/separation = 150
 
 [node name="Exit" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
+size_flags_horizontal = 3
 texture_normal = ExtResource("2_kbwpq")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/Exit"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 86.0
+offset_right = 65.0
+offset_bottom = 128.0
+theme_override_font_sizes/font_size = 30
+text = "Exit"
 
 [node name="Next Level" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
-texture_normal = ExtResource("3_o8j8u")
+texture_normal = ExtResource("3_p8egt")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/Next Level"]
+layout_mode = 0
+offset_left = -35.0
+offset_top = 86.0
+offset_right = 118.0
+offset_bottom = 128.0
+theme_override_font_sizes/font_size = 30
+text = "Next Level"
 
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Exit" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Next Level" to="." method="_on_next_level_pressed"]

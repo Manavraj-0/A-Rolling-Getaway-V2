@@ -1,15 +1,11 @@
 # Lvl_1.gd
 extends Node2D
 
-@onready var ground = $Tilemaps/Ground  # Your TileMap
+@onready var ground = $Tilemaps  # Your TileMap
 @onready var victory_area = $Tilemaps/Ground/VictoryArea  # Area2D for detection
 @onready var victory_screen = $VictoryScreen
 @onready var hud: CanvasLayer = $HUD
 @onready var pause_menu: Control = $PauseMenu
-
-#var floor_position = 1  # Track vertical position
-#var floor_count = 1
-#const FLOOR_HEIGHT = 500  # Adjust based on your level design
 
 var ground_speed = 10  # Your current vertical speed
 var game_won = false
@@ -21,7 +17,7 @@ var coins_collected_this_level = 0
 
 func _ready():
 	# Debug print to confirm signals are connected
-	print("Connecting signals...")
+	#print("Connecting signals...")
 	
 	hud.pause_requested.connect(toggle_pause)
 	
@@ -39,6 +35,7 @@ func _ready():
 	
 	# Connect victory area signal
 	if victory_area:
+		
 		victory_area.body_entered.connect(_on_victory_area_body_entered)
 	
 	# Connect victory screen buttons using the correct signal names
@@ -66,13 +63,6 @@ func toggle_pause():
 	hud.visible = !get_tree().paused
 
 func _process(delta):
-	#var tilemaps = $Tilemaps/Ground
-	#if tilemaps:
-		#var new_floor_pos = floor(abs(tilemaps.position.y) / FLOOR_HEIGHT)
-		#if new_floor_pos > floor_count:
-			#floor_count = new_floor_pos
-			#hud.update_floor(floor_count)
-	
 	if game_won:
 		return  # Stop all movement if game is won
 		
@@ -84,7 +74,7 @@ func _process(delta):
 	
 	# Move ground only if timer has finished and game isn't won
 	if can_move and !game_won:
-		ground.position.y -= ground_speed * delta
+		ground.start_movement()
 
 
 func _on_start_timer_timeout():
@@ -102,6 +92,10 @@ func win_game():
 	print("Game won!")
 	game_won = true
 	can_move = false
+	
+	if ground.has_method("stop_movement"):
+		ground.stop_movement()
+		print("stopped")
 	
 	# Save coins only when level is completed
 	print("Coins collected: ", coins_collected_this_level)

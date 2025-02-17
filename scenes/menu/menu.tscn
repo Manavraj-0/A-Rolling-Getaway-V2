@@ -122,6 +122,7 @@ text = "Level Mode"
 script = ExtResource("2_3wv78")
 
 [node name="EndlessBtn" type="Button" parent="MainContainer/ButtonGrid"]
+visible = false
 custom_minimum_size = Vector2(250, 50)
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
@@ -138,6 +139,7 @@ text = "Customizations"
 script = ExtResource("4_tyo7c")
 
 [node name="HighScoreBtn" type="Button" parent="MainContainer/ButtonGrid"]
+visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 theme_override_styles/focus = SubResource("StyleBoxFlat_yn6e4")

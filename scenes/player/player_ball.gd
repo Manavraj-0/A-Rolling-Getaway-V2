@@ -12,6 +12,8 @@ var max_health = 3
 var current_health = max_health
 
 @onready var tilemap = get_node("/root/Lvl1/Tilemaps")  # Adjust path if needed
+@onready var tilemaps: TileMap = $"../Tilemaps"
+
 @onready var death_timer = Timer.new()
 
 func _ready():
@@ -46,6 +48,7 @@ func _on_body_exited(body):
 		is_grounded = false
 
 func _physics_process(_delta):
+	#print("Tilemap ref: ", tilemap)
 	# Only process movement if not dying
 	if not is_dying:
 		# Handle horizontal movement
@@ -55,7 +58,8 @@ func _physics_process(_delta):
 				has_moved = true
 				tilemap.start_movement()
 			
-			apply_central_force(Vector2(horizontal_input * move_speed, 0))
+			if horizontal_input != 0:
+				apply_central_force(Vector2(horizontal_input * move_speed, 0))
 		
 		# Handle jumping
 		if Input.is_action_just_pressed("ui_up") and is_grounded:

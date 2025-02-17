@@ -29,14 +29,14 @@ func setup_controls():
 		var jump_button = $MobileControls/JumpButton
 		
 		# Button pressed
-		left_button.button_down.connect(func(): Input.action_press("ui_left"))
-		right_button.button_down.connect(func(): Input.action_press("ui_right"))
-		jump_button.button_down.connect(func(): Input.action_press("ui_up"))
+		left_button.pressed.connect(func(): Input.action_press("ui_left"))
+		right_button.pressed.connect(func(): Input.action_press("ui_right"))
+		jump_button.pressed.connect(func(): Input.action_press("ui_up"))
 		
 		# Button released
-		left_button.button_up.connect(func(): Input.action_release("ui_left"))
-		right_button.button_up.connect(func(): Input.action_release("ui_right"))
-		jump_button.button_up.connect(func(): Input.action_release("ui_up"))
+		left_button.released.connect(func(): Input.action_release("ui_left"))
+		right_button.released.connect(func(): Input.action_release("ui_right"))
+		jump_button.released.connect(func(): Input.action_release("ui_up"))
 
 func _on_pause_button_pressed():
 	#var level = get_parent()
