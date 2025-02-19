@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://gvr7k8jyhbnx"
-path="res://.godot/imported/Planets.png-637aa4708836e73242757f5592c760b5.ctex"
+uid="uid://divciol3oehnx"
+path="res://.godot/imported/Nebula.png-76f0db4cf2dc1370e3f74fd1e2c5747d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/Planets.png"
-dest_files=["res://.godot/imported/Planets.png-637aa4708836e73242757f5592c760b5.ctex"]
+source_file="res://assets/images/Nebula.png"
+dest_files=["res://.godot/imported/Nebula.png-76f0db4cf2dc1370e3f74fd1e2c5747d.ctex"]
 
 [params]
 

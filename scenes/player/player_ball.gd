@@ -33,7 +33,7 @@ func _ready():
 	
 	# Setup death timer
 	add_child(death_timer)
-	death_timer.wait_time = 1.0
+	death_timer.wait_time = 0.0
 	death_timer.one_shot = true
 	death_timer.timeout.connect(player_death)
 
@@ -77,6 +77,7 @@ func _process(_delta):
 		start_death_sequence()
 
 func start_death_sequence():
+	await reset_input_actions()
 	is_dying = true
 	death_timer.start()
 	# Optional: Add death effects here
@@ -101,3 +102,8 @@ func restart_level():
 	#var current_scene = get_tree().current_scene.scene_file_path
 	# Reload the current scene
 	get_tree().reload_current_scene()
+
+func reset_input_actions():
+	Input.action_release("ui_left")
+	Input.action_release("ui_right")
+	Input.action_release("ui_up")
