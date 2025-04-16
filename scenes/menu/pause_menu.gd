@@ -19,8 +19,8 @@ func _on_menu_button_pressed():
 
 
 func _on_resume_button_pressed() -> void:
-	var level = get_parent()
-	if level.has_method("toggle_pause"):
+	var level = get_tree().current_scene
+	if level and level.has_method("toggle_pause"):
 		level.toggle_pause()
 
 
