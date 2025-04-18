@@ -7,8 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://by2j3mxfm8ao7" path="res://assets/images/sheet.png" id="2_j8o60"]
 [ext_resource type="PackedScene" uid="uid://85jke3t2ltqx" path="res://scenes/player/PlayerBall.tscn" id="3_48ttd"]
 [ext_resource type="Texture2D" uid="uid://divciol3oehnx" path="res://assets/images/Nebula.png" id="3_qs3rw"]
-[ext_resource type="Texture2D" uid="uid://85bwwomdsbxd" path="res://assets/images/Stars.png" id="4_8b3qb"]
 [ext_resource type="Texture2D" uid="uid://gvr7k8jyhbnx" path="res://assets/images/Planets.png" id="4_na5pm"]
+[ext_resource type="Texture2D" uid="uid://pt4i3gcmmp5s" path="res://assets/images/StarBg.png" id="5_kxkbl"]
 [ext_resource type="PackedScene" uid="uid://n5eeakso0ewv" path="res://scenes/levels/victory_screen.tscn" id="6_uvbnh"]
 [ext_resource type="Texture2D" uid="uid://x4yl8e11mx6s" path="res://assets/images/signpost-outsidestuff.png" id="7_j417d"]
 [ext_resource type="PackedScene" uid="uid://bcdt67cul7iw" path="res://scenes/Enemies/enemy_a.tscn" id="7_uju83"]
@@ -22,7 +22,7 @@ tile_data = PackedInt32Array(0, 0, 2, 65536, 0, 3, 1, 65536, 2, 65537, 65536, 3)
 [sub_resource type="TileMapPattern" id="TileMapPattern_a0pp2"]
 tile_data = PackedInt32Array(0, 131072, 0, 65536, 131072, 1, 1, 196608, 0, 65537, 196608, 1)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5vyrj"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cqha2"]
 texture = ExtResource("7_j417d")
 0:0/0 = 0
 1:0/0 = 0
@@ -86,7 +86,7 @@ texture = ExtResource("7_j417d")
 5:7/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_wredk"]
-sources/0 = SubResource("TileSetAtlasSource_5vyrj")
+sources/0 = SubResource("TileSetAtlasSource_cqha2")
 pattern_0 = SubResource("TileMapPattern_cu6u2")
 pattern_1 = SubResource("TileMapPattern_a0pp2")
 
@@ -1066,6 +1066,7 @@ script = ExtResource("1_nmrvh")
 metadata/level_number = 1
 
 [node name="Bg" type="TextureRect" parent="."]
+visible = false
 texture_repeat = 2
 offset_left = -168.0
 offset_top = -64.0
@@ -1075,39 +1076,33 @@ texture = ExtResource("2_43oei")
 
 [node name="Nebula" type="TextureRect" parent="."]
 texture_repeat = 2
-offset_left = 32.0
+offset_left = 20.0
 offset_top = 4.0
-offset_right = 168.0
-offset_bottom = 138.0
+offset_right = 227.0
+offset_bottom = 416.0
 scale = Vector2(5.4525, 5.4525)
 texture = ExtResource("3_qs3rw")
-stretch_mode = 2
+expand_mode = 1
+stretch_mode = 6
 
 [node name="Planets" type="TextureRect" parent="."]
 texture_repeat = 2
-offset_left = 592.0
-offset_top = -8.0
-offset_right = 1152.0
-offset_bottom = 664.0
-texture = ExtResource("4_na5pm")
-stretch_mode = 5
-
-[node name="Planets2" type="TextureRect" parent="."]
-texture_repeat = 2
-offset_left = 64.0
+offset_left = -8.0
 offset_top = 4.0
-offset_right = 624.0
-offset_bottom = 672.0
+offset_right = 1139.0
+offset_bottom = 2250.0
 texture = ExtResource("4_na5pm")
-stretch_mode = 5
-flip_v = true
+expand_mode = 1
+stretch_mode = 6
 
 [node name="Stars" type="TextureRect" parent="."]
 texture_repeat = 2
 offset_right = 200.0
-offset_bottom = 200.0
+offset_bottom = 392.0
 scale = Vector2(5.74, 5.74)
-texture = ExtResource("4_8b3qb")
+texture = ExtResource("5_kxkbl")
+expand_mode = 1
+stretch_mode = 6
 
 [node name="Tilemaps" type="TileMap" parent="."]
 format = 2
@@ -1262,19 +1257,19 @@ position = Vector2(224, 1967)
 position = Vector2(384, 175)
 
 [node name="Player" parent="." instance=ExtResource("3_48ttd")]
-position = Vector2(96, 109)
+position = Vector2(129, 139)
 
 [node name="Enemy_A" parent="." instance=ExtResource("7_uju83")]
-position = Vector2(256, 400)
+position = Vector2(256, 402)
 
 [node name="Enemy_A2" parent="." instance=ExtResource("7_uju83")]
-position = Vector2(608, 848)
+position = Vector2(608, 850)
 
 [node name="Enemy_A3" parent="." instance=ExtResource("7_uju83")]
-position = Vector2(376, 1520)
+position = Vector2(376, 1522)
 
 [node name="Enemy_A4" parent="." instance=ExtResource("7_uju83")]
-position = Vector2(544, 1968)
+position = Vector2(544, 1970)
 
 [node name="VictoryScreen" parent="." instance=ExtResource("6_uvbnh")]
 visible = false

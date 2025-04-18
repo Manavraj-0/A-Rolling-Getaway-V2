@@ -1,13 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://bcdt67cul7iw"]
+[gd_scene load_steps=8 format=3 uid="uid://de8qyy7sxrcqv"]
 
-[ext_resource type="Script" path="res://enemy_a.gd" id="1_rvd57"]
-[ext_resource type="Texture2D" uid="uid://clc0cpnqgmu0g" path="res://assets/enemy/Transparent PNG/spike monster A.png" id="2_ub4va"]
+[ext_resource type="Script" path="res://enemy_a.gd" id="1_orlek"]
+[ext_resource type="Texture2D" uid="uid://b6as7k3u7l7tw" path="res://assets/enemy/Transparent PNG/spike monster B.png" id="2_0mbwk"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_m1ejv"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_ub4va")
+"texture": ExtResource("2_0mbwk")
 }],
 "loop": true,
 "name": &"left",
@@ -15,7 +15,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_ub4va")
+"texture": ExtResource("2_0mbwk")
 }],
 "loop": true,
 "name": &"right",
@@ -34,17 +34,16 @@ size = Vector2(149.635, 59.8783)
 [sub_resource type="CircleShape2D" id="CircleShape2D_raknt"]
 radius = 149.635
 
-[node name="Enemy_A" type="CharacterBody2D"]
-position = Vector2(0, -24)
+[node name="Enemy_B" type="CharacterBody2D"]
+position = Vector2(0, -32)
 scale = Vector2(0.320781, 0.320781)
 collision_layer = 2
-script = ExtResource("1_rvd57")
+script = ExtResource("1_orlek")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 2
 sprite_frames = SubResource("SpriteFrames_m1ejv")
-animation = &"right"
-frame_progress = 0.583779
+animation = &"left"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false

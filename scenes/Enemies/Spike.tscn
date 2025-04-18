@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://b1234sv4i1uqm"]
+
+[ext_resource type="Script" path="res://scenes/Enemies/spike.gd" id="1_8vv3e"]
+[ext_resource type="Texture2D" uid="uid://mymxl3dny5gu" path="res://assets/enemy/Transparent PNG/spike.png" id="1_aa3vk"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g81yw"]
+radius = 7.60673
+height = 15.2135
+
+[node name="Spike" type="Area2D"]
+collision_mask = 4
+script = ExtResource("1_8vv3e")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 2
+scale = Vector2(0.320144, 0.260072)
+texture = ExtResource("1_aa3vk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3.99999)
+scale = Vector2(1.33673, 5.12704)
+shape = SubResource("CapsuleShape2D_g81yw")

@@ -1,10 +1,10 @@
 extends RigidBody2D
 
-@onready var ground_check: CollisionShape2D = $GroundCheck
+@onready var ground_check := get_parent().get_node("GroundCheck")
 
 signal health_changed(new_health)
 
-# Movement variables
+# Movement
 var move_speed = 300
 var jump_force = -250
 var has_moved = false
@@ -12,65 +12,89 @@ var is_dying = false
 var max_health = 3
 var current_health = max_health
 
-@onready var tilemap = get_node_or_null("/root/Lvl1/Tilemaps")
+# Ground detection
+var floor_contacts = 0
+var is_grounded = false
+
+# Coyote‑time (grace period to still jump after leaving ground)
+var coyote_time = 0.01
+var coyote_timer = 0.0
+
+# Death timer
 @onready var death_timer = Timer.new()
 
-# Coyote Time variables
-var coyote_time = 0.2  # Duration after leaving the ground where a jump is still allowed
-var coyote_timer = 0.0  # Timer for tracking coyote time
-
-var is_grounded = false  # Whether the player is on the ground
-
 func _ready():
+	# GroundCheck triggers
+	ground_check.body_entered.connect(_on_ground_entered)
+	ground_check.body_exited.connect(_on_ground_exited)
+	
 	gravity_scale = 1.0
 	contact_monitor = true
 	max_contacts_reported = 3
 	
+	# Skin
 	var current_skin = GameProgress.get_current_skin()
-	var texture_path = GameProgress.get_skin_texture_path(current_skin)
-	$Sprite2D.texture = load(texture_path)
+	$Sprite2D.texture = load(GameProgress.get_skin_texture_path(current_skin))
 	
+	# Death timer
 	add_child(death_timer)
 	death_timer.wait_time = 1
 	death_timer.one_shot = true
 	death_timer.timeout.connect(player_death)
 
 func _physics_process(delta):
-	# Update ground detection using get_contact_count
-	is_grounded = get_contact_count() > 0
-	
-	# Coyote timer management
-	if is_grounded:
-		coyote_timer = coyote_time  # Reset the timer when on the ground
-	else:
-		coyote_timer -= delta  # Decrease the timer when not grounded
-	
-	if not is_dying and has_moved:
-		# Handle horizontal movement
-		var horizontal_input = Input.get_axis("ui_left", "ui_right")
-		if horizontal_input != 0:
-			apply_central_force(Vector2(horizontal_input * move_speed, 0))
-		
-		# Jump logic, allowing for coyote time
-		if Input.is_action_just_pressed("ui_up") and (is_grounded or coyote_timer > 0):
-			apply_central_impulse(Vector2(0, jump_force))
-			# Reset coyote timer to avoid "double jumping" during the grace period
-			coyote_timer = 0.0
+	# 1) Reposition & lock the GroundCheck so it never rotates with the ball
+	if ground_check:
+		ground_check.global_position = global_position + Vector2(0, 20)
+		ground_check.rotation = 0
 
-func _process(_delta):
+	#print("Ball: ", global_position, " | GroundCheck: ", ground_check.global_position)
+
+	# 2) Coyote‑time update
+	if is_grounded:
+		coyote_timer = coyote_time
+	else:
+		coyote_timer -= delta
+
+	# 3) Movement + jump
+	if not is_dying and has_moved:
+		var h = Input.get_axis("ui_left", "ui_right")
+		if h != 0:
+			apply_central_force(Vector2(h * move_speed, 0))
+
+		if Input.is_action_just_pressed("ui_up") and coyote_timer > 0.0:
+			# reset any downward speed for a snappy jump
+			linear_velocity.y = 0
+			apply_central_impulse(Vector2(0, jump_force))
+			coyote_timer = 0.0  # prevent double‑jump
+
+func _on_ground_entered(body):
+	if body.is_in_group("ground"):
+		floor_contacts += 1
+		is_grounded = true
+
+func _on_ground_exited(body):
+	if body.is_in_group("ground"):
+		floor_contacts = max(floor_contacts - 1, 0)
+		is_grounded = floor_contacts > 0
+
+func _process(delta):
 	if is_dying:
 		return
 
-	var cam := get_viewport().get_camera_2d()
-	if cam == null:
-		return  # No camera to base bounds on
-	
+	# Death if out of view (handles both Level 2 camera and Level 1 no‑camera)
 	var margin = 50
-	var screen_size = get_viewport().get_visible_rect().size
-	var camera_center = cam.global_position
-	var visible_rect = Rect2(camera_center - screen_size / 2, screen_size).grow(margin)
+	var rect: Rect2
+	var cam = get_viewport().get_camera_2d()
+	if cam:
+		# Level 2: camera moving
+		var size = get_viewport().get_visible_rect().size
+		rect = Rect2(cam.global_position - size/2, size).grow(margin)
+	else:
+		# Level 1: no camera, just the window
+		rect = get_viewport_rect().grow(margin)
 
-	if not visible_rect.has_point(global_position):
+	if not rect.has_point(global_position):
 		start_death_sequence()
 
 func start_death_sequence():
@@ -88,7 +112,6 @@ func die():
 	get_tree().reload_current_scene()
 
 func player_death():
-	print("Player died!")
 	is_dying = false
 	restart_level()
 
@@ -100,5 +123,6 @@ func reset_input_actions():
 	Input.action_release("ui_right")
 	Input.action_release("ui_up")
 
+# Called by your Level scripts to kick off movement
 func notify_level_started():
 	has_moved = true
