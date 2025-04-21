@@ -28,6 +28,13 @@ func setup_controls():
 		var right_button = $MobileControls/RightButton
 		var jump_button = $MobileControls/JumpButton
 		
+		# Make buttons slightly translucent
+		var translucent_color = Color(1, 1, 1, 0.6)  # White with 60% opacity
+		left_button.modulate = translucent_color
+		right_button.modulate = translucent_color
+		jump_button.modulate = translucent_color
+
+		
 		# Button pressed
 		left_button.pressed.connect(func(): Input.action_press("ui_left"))
 		right_button.pressed.connect(func(): Input.action_press("ui_right"))
